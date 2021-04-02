@@ -1,22 +1,28 @@
 body {
     color: #111637;
-    font-family: 'gorditamedium';
+    font-family: 'verdana';
     font-size: 1em;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+}
+
+header {
+  margin: 0 auto;
+  box-shadow: 0 0px 3px 0 rgb(0 0 0 / 10%);
 }
 
 .App {
   text-align: left;
+  position: relative;
+  width: 100%;
 }
 
-.App-logo {
-  width: 20vmin;
-  pointer-events: none;
+.bark-logo {
+  width: 106px;
+  margin: 20px 0;
 }
 
 h1, .h1 {
   font-size: 2.5em;
+  width: 100%;
 }
 
 .text-light-grey {
@@ -33,19 +39,16 @@ form {
 
 
 .App-header {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  font-size: calc(10px + 2vmin);
+  display: block;
+  width: 100%;
+  /* font-size: calc(10px + 2vmin); */
+  position: relative;
 }
 
 .container {
   width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
+  padding: 0 15px;
+  margin: 0 auto;
 }
 
 button:not(:disabled), [type="button"]:not(:disabled), [type="reset"]:not(:disabled), [type="submit"]:not(:disabled) {

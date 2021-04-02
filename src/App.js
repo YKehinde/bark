@@ -2,8 +2,10 @@ import logo from './barklogo-dark.png';
 import './App.css';
 import Input from './Input';
 import { useState, useEffect } from 'react';
+import useAutocomplete from 'use-autocomplete';
 
 function App() {
+  const application_id = '1617268327';
   const [service, updateService] = useState('');
   const [location, updateLocation] = useState('');
   const [name, updateName] = useState('');
@@ -13,14 +15,17 @@ function App() {
   const [locations, setLocations] = useState([]);
   const apiHost = 'http://henry.r.bark.com';
   
+  const [servicesCompletions] = useAutocomplete(service, services);
+  
   useEffect(() => {
     loadData('services', setServices);
     loadData('locations', setLocations);
-  }, [])
+  }, []);
   
   const loadData = async (path, state) => {
     const response = await fetch(`${apiHost}/api/${path}`);
     const data = await response.json();
+    console.log(data);
     state(data);
   }
 
@@ -28,19 +33,45 @@ function App() {
     /* Prevent default submit behaviour */
     evt.preventDefault();
 
-    console.log(evt);
+    const data = {
+      application_id,
+      service,
+      location,
+      name,
+      email,
+      telephone
+    }
+
+    sendData(data);
   };
+
+  const sendData = (data) => {
+    console.log('sending...', data);
+    // PUT request using fetch inside useEffect React hook
+    const requestOptions = {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: data
+    };
+
+    console.log(requestOptions);
+    fetch(`${apiHost}/api/leads`, requestOptions)
+      .then(response => response.json())
+  }
 
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="Bark-logo" alt="logo" />
+        <div className="container">
+          <img src={logo} className="bark-logo" alt="Bark Logo" />
+        </div>
       </header>
       <main className="container">
         <h1>Find the perfect Professional for you</h1>
         <h2 className="text-light-grey">Get free quotes within minutes</h2>
         <form className="js-submit-lead" onSubmit={handleSubmit} >
-            <input type="hidden" name="application_id" value="1617268327" />
             {/* Service */}
               <Input
               label="What service area you looking for?"
@@ -97,7 +128,7 @@ function App() {
               {/* textArea */}
 
               {/* submit */}
-              <button type="submit" value="Submit">Submit</button>
+              <button type="submit" className="btn btn-primary">Find Professionals</button>
           </form>
       </main>
     </div>
