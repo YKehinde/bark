@@ -1,3 +1,11 @@
+body {
+    color: #111637;
+    font-family: 'gorditamedium';
+    font-size: 1em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
 .App {
   text-align: left;
 }
@@ -6,6 +14,14 @@
   width: 20vmin;
   pointer-events: none;
 }
+
+h1, .h1 {
+  font-size: 2.5em;
+}
+
+.text-light-grey {
+    color: #9DA0B6 !important;
+} 
 
 form {
   width: 50%;
@@ -22,6 +38,14 @@ form {
   align-items: flex-start;
   justify-content: flex-start;
   font-size: calc(10px + 2vmin);
+}
+
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 button:not(:disabled), [type="button"]:not(:disabled), [type="reset"]:not(:disabled), [type="submit"]:not(:disabled) {

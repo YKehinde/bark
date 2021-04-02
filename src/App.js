@@ -1,8 +1,7 @@
 import logo from './barklogo-dark.png';
 import './App.css';
 import Input from './Input';
-import { useState } from 'react';
-
+import { useState, useEffect } from 'react';
 
 function App() {
   const [service, updateService] = useState('');
@@ -10,22 +9,38 @@ function App() {
   const [name, updateName] = useState('');
   const [email, updateEmail] = useState('');
   const [telephone, updateTelephone] = useState('');
-  const handleSubmit = (evt) => {};
-
-  autocomplete = (e) => {
-    console.log('yemi');
+  const [services, setServices] = useState([]);
+  const [locations, setLocations] = useState([]);
+  const apiHost = 'http://henry.r.bark.com';
+  
+  useEffect(() => {
+    loadData('services', setServices);
+    loadData('locations', setLocations);
+  }, [])
+  
+  const loadData = async (path, state) => {
+    const response = await fetch(`${apiHost}/api/${path}`);
+    const data = await response.json();
+    state(data);
   }
+
+  const handleSubmit = (evt) => {
+    /* Prevent default submit behaviour */
+    evt.preventDefault();
+
+    console.log(evt);
+  };
 
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="Bark-logo" alt="logo" />
-        <h1>Find the perfect Professional for you</h1>
-        <h2>Get free quotes within minutes</h2>
       </header>
-      <main>
+      <main className="container">
+        <h1>Find the perfect Professional for you</h1>
+        <h2 className="text-light-grey">Get free quotes within minutes</h2>
         <form className="js-submit-lead" onSubmit={handleSubmit} >
-            <input type="hidden" name="application_id" value="example" />
+            <input type="hidden" name="application_id" value="1617268327" />
             {/* Service */}
               <Input
               label="What service area you looking for?"
