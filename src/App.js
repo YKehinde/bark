@@ -2,7 +2,6 @@ import logo from './barklogo-dark.png';
 import './App.css';
 import Input from './Input';
 import { useState, useEffect } from 'react';
-import useAutocomplete from 'use-autocomplete';
 
 function App() {
   const application_id = '1617268327';
@@ -16,7 +15,6 @@ function App() {
   const [locations, setLocations] = useState([]);
   const apiHost = 'http://henry.r.bark.com';
   
-  const [servicesCompletions] = useAutocomplete(service, services);
   
   useEffect(() => {
     loadData('services', setServices);
@@ -26,7 +24,6 @@ function App() {
   const loadData = async (path, state) => {
     const response = await fetch(`${apiHost}/api/${path}`);
     const data = await response.json();
-    console.log(data);
     state(data);
   }
 
