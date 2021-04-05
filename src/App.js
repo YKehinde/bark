@@ -31,6 +31,16 @@ function App() {
     /* Prevent default submit behaviour */
     evt.preventDefault();
 
+    if (
+      service.length === 0 &&
+      location.length === 0 &&
+      name.length === 0 &&
+      email.length === 0 
+    ) {
+      alert('Please fill out all required fields');
+      return;
+    }
+
     const data = {
     "application_id": application_id,
     "name": name,
