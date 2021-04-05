@@ -131,10 +131,10 @@ function App() {
               smallText="So we can verify your information"
               handleChangeValue={e => updateTelephone(e.target.value)} />
               {/* textArea */}
-              <div class="form-group">
-                  <label for="inputExtraInformation">Any Extra Information?</label>
-                  <textarea class="form-control" id="inputExtraInformation" name="extra" aria-describedby="extraInfoDescription" rows="3" onChange={e => updateInfo(e.target.value)}></textarea>
-                  <small id="extraInfoDescription" class="form-text text-muted">
+              <div className="form-group">
+                  <label htmlFor="inputExtraInformation">Any Extra Information?</label>
+                  <textarea className="form-control" id="inputExtraInformation" name="extra" aria-describedby="extraInfoDescription" rows="3" onChange={e => updateInfo(e.target.value)}></textarea>
+                  <small id="extraInfoDescription" className="form-text text-muted">
                       Include as much information as you can, so we can find the best Professionals
                   </small>
               </div>
