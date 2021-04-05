@@ -1,6 +1,18 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## What I did
+* Recreated the form in react
+* Componentised the input
+* Created the modal as a component
+* Added styles to the application, input and modal
+* Pulled the data for the autocomplete
+* Used fetch to call the data
+* Attempted to post the data using axios after trying with fetch (workings in the commits)
+
+## What I didn't manage to do
+* Display and be able to select the autocomplete lists
+* Send the lead with a 200 response
+* Get fontawsome working for the circled tick and close icon
 
 ## Available Scripts
 
