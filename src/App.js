@@ -23,6 +23,21 @@ function App() {
     loadData('locations', setLocations);
   }, []);
   
+  function closeModal() {
+    const inputs = document.querySelectorAll('input');
+    Array.from(inputs).forEach(
+      input => (input.value = "")
+    );
+
+    updateService('');
+    updateLocation('');
+    updateName('');
+    updateEmail('');
+    updateTelephone('');
+    updateInfo('');
+    setIsOpen(false);
+  }
+  
   const loadData = async (path, state) => {
     const response = await fetch(`${apiHost}/api/${path}`);
     const data = await response.json();
