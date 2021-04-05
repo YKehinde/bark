@@ -83,7 +83,7 @@ function App() {
       <main className="container">
         <h1>Find the perfect Professional for you</h1>
         <h2 className="text-light-grey">Get free quotes within minutes</h2>
-        <form className="js-submit-lead" onSubmit={handleSubmit} >
+        <form className="js-submit-lead" onSubmit={handleSubmit}>
             {/* Service */}
               <Input
               label="What service area you looking for?"
