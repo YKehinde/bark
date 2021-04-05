@@ -11,6 +11,7 @@ function App() {
   const [name, updateName] = useState('');
   const [email, updateEmail] = useState('');
   const [telephone, updateTelephone] = useState('');
+  const [info, updateInfo] = useState('');
   const [services, setServices] = useState([]);
   const [locations, setLocations] = useState([]);
   const apiHost = 'http://henry.r.bark.com';
@@ -34,12 +35,13 @@ function App() {
     evt.preventDefault();
 
     const data = {
-      application_id,
-      service,
-      location,
-      name,
-      email,
-      telephone
+    "application_id": application_id,
+    "name": name,
+    "email": email,
+    "phone": telephone,
+    "more_info": info,
+    "location_id": 1,
+    "service_id": 1
     }
 
     sendData(data);
@@ -49,7 +51,7 @@ function App() {
     console.log('sending...', data);
     // PUT request using fetch inside useEffect React hook
     const requestOptions = {
-      method: 'PUT',
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
@@ -59,6 +61,9 @@ function App() {
     console.log(requestOptions);
     fetch(`${apiHost}/api/leads`, requestOptions)
       .then(response => response.json())
+      .catch(error => {
+        console.error('There was an error!', error);
+      });
   }
 
   return (
@@ -126,7 +131,13 @@ function App() {
               smallText="So we can verify your information"
               handleChangeValue={e => updateTelephone(e.target.value)} />
               {/* textArea */}
-
+              <div class="form-group">
+                        <label for="inputExtraInformation">Any Extra Information?</label>
+                        <textarea class="form-control" id="inputExtraInformation" name="extra" aria-describedby="extraInfoDescription" rows="3" onChange={e => updateInfo(e.target.value)}></textarea>
+                        <small id="extraInfoDescription" class="form-text text-muted">
+                            Include as much information as you can, so we can find the best Professionals
+                        </small>
+                    </div>
               {/* submit */}
               <button type="submit" className="btn btn-primary">Find Professionals</button>
           </form>
