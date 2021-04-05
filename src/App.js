@@ -2,6 +2,7 @@ import logo from './barklogo-dark.png';
 import './App.css';
 import Input from './Input';
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 function App() {
   const application_id = '1617268327';
@@ -56,22 +57,18 @@ function App() {
   };
 
   const sendData = (data) => {
-    console.log('sending...', data);
-    // PUT request using fetch inside useEffect React hook
-    const requestOptions = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: data
-    };
-
-    console.log(requestOptions);
-    fetch(`${apiHost}/api/leads`, requestOptions)
-      .then(response => response.json())
-      .catch(error => {
-        console.error('There was an error!', error);
+    axios.post(`${apiHost}/api/leads`, data, {
+      responseType: 'json'
+    })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(data);
+        console.log(error);
       });
+
+    setIsOpen(true);
   }
 
   return (
