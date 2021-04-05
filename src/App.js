@@ -14,7 +14,8 @@ function App() {
   const [services, setServices] = useState([]);
   const [locations, setLocations] = useState([]);
   const apiHost = 'http://henry.r.bark.com';
-  
+
+  const [modalIsOpen, setIsOpen] = useState(false);
   
   useEffect(() => {
     loadData('services', setServices);
@@ -148,6 +149,11 @@ function App() {
               {/* submit */}
               <button type="submit" className="btn btn-primary">Find Professionals</button>
           </form>
+      { modalIsOpen ?
+        <Modal
+        handleClose={closeModal} /> :
+        null
+      }
       </main>
     </div>
   );
